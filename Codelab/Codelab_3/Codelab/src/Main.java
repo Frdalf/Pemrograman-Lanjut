@@ -9,7 +9,9 @@ public class Main {
         System.out.println("==== Simple Calculator ====");
         boolean running = true;
 
-
+        /**
+         * Loop utama aplikasi kalkulator
+         */
         while (running) {
             printMenu();
             int choice = readInt("Pilih menu [1-5]: ");
