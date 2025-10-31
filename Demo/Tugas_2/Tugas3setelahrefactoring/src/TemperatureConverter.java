@@ -1,6 +1,21 @@
 import java.util.Scanner;
 
+/**
+ * Program konsol sederhana untuk mengkonversi suhu antar unit
+ * Celsius, Fahrenheit, dan Kelvin.
+ * <p>
+ * Program ini mengambil input pengguna berupa nilai dan unit (misal: 25C)
+ * dan menampilkan hasil konversi ke dua unit lainnya.
+ */
+
 public class TemperatureConverter {
+
+    /**
+     * Metode utama (main) untuk menjalankan program konversi suhu.
+     * <p>
+     * Metode ini akan meminta input dari pengguna, mem-parsing input tersebut,
+     * memanggil metode konversi yang sesuai, dan mencetak hasilnya.
+     */
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
