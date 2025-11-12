@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +28,7 @@ public class Main {
         int lineTotal(){ return item.price * qty; }
     }
 
+    
     // Data menu ringkas
     static final List<MenuItem> MENU = List.of(
             new MenuItem(1, "Nasi Goreng",  18000),
@@ -33,7 +36,11 @@ public class Main {
             new MenuItem(3, "Ayam Bakar", 25000),
             new MenuItem(4, "Es Teh", 6000),
             new MenuItem(5, "Kopi Susu", 14000)
+            
     );
+static String rupiah(int ){
+  return String.format("%,d", ).replace(',', '.'); 
+}
 
 
     // Util
