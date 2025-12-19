@@ -19,7 +19,7 @@ public class LoginFrame extends JFrame {
         setContentPane(root);
 
         RoundedCardPanel card = new RoundedCardPanel(24, true);
-        card.setPreferredSize(new Dimension(420, 390));
+        card.setPreferredSize(new Dimension(420, 440)); // ✅ lebih tinggi biar tidak gepeng
         card.setLayout(new GridBagLayout());
         card.setBorder(new EmptyBorder(22, 28, 22, 28));
 
@@ -38,31 +38,44 @@ public class LoginFrame extends JFrame {
 
         HintTextField username = new HintTextField("Masukkan username anda");
         JPanel userWrap = UIFactory.roundedField(username);
+
+        JLabel passLbl = UIFactory.label("Password");
+        HintPasswordField password = new HintPasswordField("Masukkan password anda");
+        JPanel passWrap = UIFactory.roundedPasswordField(password);
+
+        // ✅ Samakan tinggi wrapper username & password
+        Dimension fieldSize = new Dimension(420, 44);
+        userWrap.setPreferredSize(fieldSize);
+        userWrap.setMinimumSize(fieldSize);
+
+        passWrap.setPreferredSize(fieldSize);
+        passWrap.setMinimumSize(fieldSize);
+
         c.gridy = 2; c.insets = new Insets(0, 6, 14, 6);
         card.add(userWrap, c);
 
-        JLabel passLbl = UIFactory.label("Password");
         c.gridy = 3; c.insets = new Insets(0, 6, 6, 6);
         card.add(passLbl, c);
 
-        HintPasswordField password = new HintPasswordField("Masukkan password anda");
-        JPanel passWrap = UIFactory.roundedPasswordField(password);
         c.gridy = 4; c.insets = new Insets(0, 6, 18, 6);
         card.add(passWrap, c);
 
         GradientButton loginBtn = new GradientButton("LOGIN");
         loginBtn.setPreferredSize(new Dimension(320, 48));
+        loginBtn.setMinimumSize(new Dimension(320, 48)); // ✅ biar nggak bisa gepeng
         loginBtn.setFont(UIFactory.fontBold(16f));
-        c.gridy = 5; c.insets = new Insets(0, 6, 10, 6);
+        c.gridy = 5; c.insets = new Insets(0, 6, 12, 6);
         card.add(loginBtn, c);
 
         LinkLabel forgot = new LinkLabel("Lupa Password?");
         forgot.setHorizontalAlignment(SwingConstants.CENTER);
-        c.gridy = 6; c.insets = new Insets(4, 6, 6, 6);
+        forgot.setPreferredSize(new Dimension(320, 22)); // ✅ kasih tinggi normal
+        c.gridy = 6; c.insets = new Insets(6, 6, 6, 6);
         card.add(forgot, c);
 
         LinkLabel register = new LinkLabel("Buat Akun");
         register.setHorizontalAlignment(SwingConstants.CENTER);
+        register.setPreferredSize(new Dimension(320, 22)); // ✅ kasih tinggi normal
         c.gridy = 7; c.insets = new Insets(0, 6, 2, 6);
         card.add(register, c);
 

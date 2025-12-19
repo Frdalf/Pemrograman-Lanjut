@@ -39,15 +39,22 @@ public class UIFactory {
         outline.setLayout(new BorderLayout());
         outline.setBorder(new EmptyBorder(10, 14, 10, 10));
 
-        JButton eye = new JButton("👁");
+        JButton eye = new JButton("👁️"); // ✅ biasanya tampil lebih jelas daripada "👁"
         eye.setFocusPainted(false);
         eye.setBorderPainted(false);
         eye.setContentAreaFilled(false);
         eye.setOpaque(false);
         eye.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        eye.setPreferredSize(new Dimension(44, 40));
 
-        char defaultEcho = pass.getEchoChar();
+        // ✅ besarin icon + rapihin padding biar gak kecil
+        eye.setFont(fontPlain(18f));                 // coba 18–20 kalau mau lebih besar
+        eye.setPreferredSize(new Dimension(50, 44)); // area klik lebih nyaman
+        eye.setMargin(new Insets(0, 0, 0, 0));       // hilangkan padding default tombol
+        eye.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // simpan echo default
+        final char defaultEcho = pass.getEchoChar();
+
         eye.addActionListener(e -> {
             pass.setEchoChar(pass.getEchoChar() == 0 ? defaultEcho : (char) 0);
             pass.requestFocusInWindow();
@@ -61,6 +68,7 @@ public class UIFactory {
         p.add(outline, BorderLayout.CENTER);
         return p;
     }
+
 
     public static JPanel unitBlock(String label, JComboBox<TempUnit> combo, JTextField field, boolean editableField) {
         JPanel p = new JPanel(new BorderLayout(0, 8));

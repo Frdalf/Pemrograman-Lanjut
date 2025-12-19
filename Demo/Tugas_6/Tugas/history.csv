@@ -1,0 +1,3 @@
+id,datetime,from_unit,from_value,to_unit,to_value
+1,2025-12-19 15:49:13,CELSIUS,25.0,FAHRENHEIT,77.0
+2,2025-12-19 15:52:46,CELSIUS,15.0,FAHRENHEIT,59.0

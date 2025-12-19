@@ -5,7 +5,8 @@ import java.awt.*;
 public class ResetPasswordDialog extends JDialog {
     public ResetPasswordDialog(JFrame parent, CSVUserStore store) {
         super(parent, "Lupa Password", true);
-        setSize(460, 380);
+
+        setSize(460, 430);
         setLocationRelativeTo(parent);
 
         GradientBackgroundPanel root = new GradientBackgroundPanel();
@@ -13,12 +14,14 @@ public class ResetPasswordDialog extends JDialog {
         setContentPane(root);
 
         RoundedCardPanel card = new RoundedCardPanel(22, true);
-        card.setPreferredSize(new Dimension(390, 310));
+        card.setPreferredSize(new Dimension(390, 350));
         card.setLayout(new GridBagLayout());
         card.setBorder(new EmptyBorder(18, 22, 18, 22));
 
         GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0; c.weightx = 1; c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.weightx = 1;
+        c.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel title = UIFactory.title("Reset Password");
         c.gridy = 0; c.insets = new Insets(6, 6, 14, 6);
@@ -28,19 +31,39 @@ public class ResetPasswordDialog extends JDialog {
         HintPasswordField pass = new HintPasswordField("Password baru");
         HintPasswordField pass2 = new HintPasswordField("Konfirmasi password");
 
+        // ✅ bungkus dulu biar bisa disamain ukurannya
+        JPanel userWrap = UIFactory.roundedField(user);
+        JPanel passWrap = UIFactory.roundedPasswordField(pass);
+        JPanel pass2Wrap = UIFactory.roundedPasswordField(pass2);
+
+        // ✅ kunci semua field wrapper biar tinggi sama (tidak berubah-ubah)
+        Dimension fieldSize = new Dimension(390, 44);
+        userWrap.setPreferredSize(fieldSize);
+        userWrap.setMinimumSize(fieldSize);
+        userWrap.setMaximumSize(fieldSize);
+
+        passWrap.setPreferredSize(fieldSize);
+        passWrap.setMinimumSize(fieldSize);
+        passWrap.setMaximumSize(fieldSize);
+
+        pass2Wrap.setPreferredSize(fieldSize);
+        pass2Wrap.setMinimumSize(fieldSize);
+        pass2Wrap.setMaximumSize(fieldSize);
+
         c.gridy = 1; c.insets = new Insets(0, 6, 12, 6);
-        card.add(UIFactory.roundedField(user), c);
+        card.add(userWrap, c);
 
-        c.gridy = 2;
-        card.add(UIFactory.roundedPasswordField(pass), c);
+        c.gridy = 2; c.insets = new Insets(0, 6, 12, 6);
+        card.add(passWrap, c);
 
-        c.gridy = 3;
-        card.add(UIFactory.roundedPasswordField(pass2), c);
+        c.gridy = 3; c.insets = new Insets(0, 6, 14, 6);
+        card.add(pass2Wrap, c);
 
         GradientButton reset = new GradientButton("RESET");
         reset.setPreferredSize(new Dimension(320, 46));
+        reset.setMinimumSize(new Dimension(320, 46)); // ✅ anti gepeng
         reset.setFont(UIFactory.fontBold(15f));
-        c.gridy = 4; c.insets = new Insets(12, 6, 0, 6);
+        c.gridy = 4; c.insets = new Insets(0, 6, 0, 6);
         card.add(reset, c);
 
         reset.addActionListener(e -> {
